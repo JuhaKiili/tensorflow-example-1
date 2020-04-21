@@ -29,11 +29,26 @@ with np.load(f, allow_pickle=True) as f:
     x_test, y_test = f['x_test'], f['y_test']
 
 model = tf.keras.models.Sequential([
-  tf.keras.layers.Flatten(input_shape=(28, 28)),
+  tf.keras.layers.Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=(28, 28)),
+  tf.keras.layers.Conv2D(64, kernel_size=(3, 3), activation='relu'),
+  tf.keras.layers.MaxPooling2D(pool_size=(2, 2)),
+  tf.keras.layers.Flatten(),
   tf.keras.layers.Dense(128, activation='relu'),
   tf.keras.layers.Dropout(0.2),
   tf.keras.layers.Dense(10, activation='softmax')
 ])
+
+# model = Sequential()
+# model.add(Conv2D(32, kernel_size=(3, 3),
+#                  activation='relu',
+#                  input_shape=input_shape))
+# model.add(Conv2D(64, (3, 3), activation='relu'))
+# model.add(MaxPooling2D(pool_size=(2, 2)))
+# model.add(Dropout(0.25))
+# model.add(Flatten())
+# model.add(Dense(128, activation='relu'))
+# model.add(Dropout(0.5))
+# model.add(Dense(num_classes, activation='softmax'))
 
 model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=args.learning_rate),
               loss='sparse_categorical_crossentropy',
