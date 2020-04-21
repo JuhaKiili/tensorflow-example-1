@@ -35,7 +35,7 @@ model = tf.keras.models.Sequential([
   tf.keras.layers.Dense(10, activation='softmax')
 ])
 
-model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=args.learning_rate), batch_size=args.batch_size
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=args.learning_rate), batch_size=args.batch_size,
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
