@@ -35,7 +35,7 @@ model = tf.keras.models.Sequential([
   tf.keras.layers.Dense(10, activation='softmax')
 ])
 
-model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=args.learning_rate), batch_size=args.batch_size,
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=args.learning_rate),
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
@@ -54,7 +54,7 @@ def log(epoch, logs):
 
 cb = tf.keras.callbacks.LambdaCallback(on_epoch_end=log)
 
-model.fit(x_train, y_train, epochs=args.epochs, callbacks=[cb])
+model.fit(x_train, y_train, epochs=args.epochs, batch_size=args.batch_size, callbacks=[cb])
 
 
 # Evaluate the model and print out the test metrics as JSON
