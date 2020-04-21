@@ -29,7 +29,7 @@ with np.load(f, allow_pickle=True) as f:
     x_test, y_test = f['x_test'], f['y_test']
 
 model = tf.keras.models.Sequential([
-  tf.keras.layers.Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 1)),
+  tf.keras.layers.Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=(1, 28, 28)),
   tf.keras.layers.Conv2D(64, kernel_size=(3, 3), activation='relu'),
   tf.keras.layers.MaxPooling2D(pool_size=(2, 2)),
   tf.keras.layers.Flatten(),
