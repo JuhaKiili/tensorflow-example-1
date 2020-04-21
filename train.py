@@ -13,6 +13,7 @@ import tensorflow as tf
 parser = argparse.ArgumentParser()
 parser.add_argument('--epochs', type=int, default=5)
 parser.add_argument('--learning_rate', type=float, default=0.001)
+parser.add_argument('--batch_size', type=int, default=1024)
 args = parser.parse_args()
 
 
@@ -34,7 +35,7 @@ model = tf.keras.models.Sequential([
   tf.keras.layers.Dense(10, activation='softmax')
 ])
 
-model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=args.learning_rate),
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=args.learning_rate), batch_size=args.batch_size
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 

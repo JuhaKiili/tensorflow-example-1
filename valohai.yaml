@@ -26,7 +26,10 @@
         description: How much to change
         type: float
         default: 0.001
-
+      - name: batch_size
+        description: Batch_size
+        type: integer
+        default: 1024
 
 - pipeline:
     name: Training pipeline
